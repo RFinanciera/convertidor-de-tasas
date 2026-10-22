@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q6TZQGEE3H"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Q6TZQGEE3H');
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Conversor de Tasas | Revolución Financiera</title>
+    <meta name="description" content="Convertí la TNA de tu billetera o plazo fijo a TEM y TEA, y compará contra la inflación para ver tu tasa real.">
+    <link rel="icon" href="revfin_logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: header + hero oscuro, tarjeta de entrada a la izquierda y resultados a la derecha (se apilan en celular), referencia rápida y bloques de curso/asesoría/YouTube al final. */
+:root {
+  --bg-primary: #FAFBFC;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #F1F3F5;
+  --text-primary: #1A1D23;
+  --text-secondary: #5A6270;
+  --text-muted: #8C939E;
+  --accent: #E63B2E;
+  --accent-light: #FEF0EF;
+  --accent-dark: #C4291E;
+  --border: #E5E8EB;
+  --border-light: #F0F2F4;
+  --success: #16A34A;
+  --success-light: #ECFDF3;
+  --warning: #D97706;
+  --warning-light: #FFF7E6;
+  --hero-a: #1A1D23;
+  --hero-b: #2D3340;
+  --nav-bg: #3D4452;
+  --header-glass: rgba(255,255,255,0.92);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --font-body: 'DM Sans', -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg-primary: #14171C; --bg-secondary: #1C2027; --bg-tertiary: #252A33;
+    --text-primary: #EEF0F3; --text-secondary: #A9B0BC; --text-muted: #7D8592;
+    --accent: #F0554A; --accent-light: #3A1F1D; --accent-dark: #E63B2E;
+    --border: #2E343E; --border-light: #262B34;
+    --success: #34D399; --success-light: #133227; --warning: #FBBF24; --warning-light: #3A2E12;
+    --hero-a: #0E1014; --hero-b: #1F2530; --nav-bg: #262C36; --header-glass: rgba(28,32,39,0.92);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg-primary: #14171C; --bg-secondary: #1C2027; --bg-tertiary: #252A33;
+  --text-primary: #EEF0F3; --text-secondary: #A9B0BC; --text-muted: #7D8592;
+  --accent: #F0554A; --accent-light: #3A1F1D; --accent-dark: #E63B2E;
+  --border: #2E343E; --border-light: #262B34;
+  --success: #34D399; --success-light: #133227; --warning: #FBBF24; --warning-light: #3A2E12;
+  --hero-a: #0E1014; --hero-b: #1F2530; --nav-bg: #262C36; --header-glass: rgba(28,32,39,0.92);
+  color-scheme: dark;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1200px; margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+@media (max-width: 520px) { .wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); } }
+
+/* NAV + HEADER */
+.simnav { background: var(--nav-bg); padding-block: 8px; text-align: center; }
+.simnav a { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.12); color: #fff; padding: 8px 20px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 13px; border: 1px solid rgba(255,255,255,0.2); }
+.header { background: var(--header-glass); border-bottom: 1px solid var(--border); padding-block: 14px; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 100; backdrop-filter: blur(12px); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg-secondary); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+.brand img { width: 40px; height: 40px; object-fit: contain; border-radius: 8px; }
+.brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+.brand-name { font-weight: 700; font-size: 16px; }
+.brand-sub { font-size: 12px; color: var(--text-muted); }
+.header-title { font-family: var(--font-mono); font-size: 13px; color: var(--text-secondary); letter-spacing: 0.5px; text-transform: uppercase; }
+
+/* HERO */
+.hero { background: linear-gradient(135deg, var(--hero-a) 0%, var(--hero-b) 100%); padding-block: 52px 44px; text-align: center; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: -50%; background: radial-gradient(ellipse at 30% 50%, rgba(230,59,46,0.10) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(230,59,46,0.05) 0%, transparent 60%); pointer-events: none; }
+.hero h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 700; color: #fff; margin-bottom: 12px; position: relative; letter-spacing: -0.5px; text-wrap: balance; }
+.hero h1 span { color: #F0554A; }
+.hero p { font-size: clamp(15px, 2.5vw, 18px); color: rgba(255,255,255,0.65); max-width: 620px; margin: 0 auto; position: relative; text-wrap: balance; }
+.formula-strip { position: relative; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+.formula-strip span { font-family: var(--font-mono); font-size: 12px; color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14); padding: 6px 12px; border-radius: 100px; }
+
+/* MAIN */
+.main { padding-block: 32px 56px; display: grid; gap: 24px; }
+.section-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
+.grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px; align-items: start; }
+@media (max-width: 880px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+.card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: var(--shadow-md); padding: 26px; min-width: 0; }
+@media (max-width: 520px) { .card { padding: 20px 16px; } }
+.card h2 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+.card .lead { font-size: 14px; color: var(--text-secondary); margin-bottom: 20px; }
+
+/* INPUTS */
+.field { display: grid; gap: 8px; margin-bottom: 20px; }
+.field > label, .field > .flabel { font-size: 13px; font-weight: 600; color: var(--text-secondary); }
+.seg { display: inline-flex; background: var(--bg-tertiary); border-radius: 100px; padding: 4px; gap: 4px; flex-wrap: wrap; }
+.seg button { font-family: var(--font-body); font-size: 13px; font-weight: 600; border: 0; background: transparent; color: var(--text-secondary); padding: 8px 16px; border-radius: 100px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--bg-secondary); color: var(--text-primary); box-shadow: var(--shadow-sm); }
+.seg button:focus-visible, .inp:focus-within, select:focus-visible, .switch input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+.inp { display: flex; align-items: center; border: 1.5px solid var(--border); border-radius: var(--radius-md); background: var(--bg-secondary); overflow: hidden; }
+.inp:focus-within { border-color: var(--accent); outline: none; box-shadow: 0 0 0 4px var(--accent-light); }
+.inp input { flex: 1; min-width: 0; border: 0; background: transparent; font-family: var(--font-mono); font-size: 22px; font-weight: 700; color: var(--text-primary); padding: 12px 14px; outline: none; }
+.inp .unit { font-family: var(--font-mono); font-size: 14px; color: var(--text-muted); padding-right: 14px; white-space: nowrap; }
+.inp.small input { font-size: 17px; padding: 10px 12px; }
+select { font-family: var(--font-body); font-size: 14px; font-weight: 500; border: 1.5px solid var(--border); border-radius: var(--radius-md); background: var(--bg-secondary); color: var(--text-primary); padding: 11px 12px; width: 100%; }
+.hint { font-size: 12px; color: var(--text-muted); }
+.divider { height: 1px; background: var(--border-light); margin: 4px 0 20px; }
+.row2 { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 12px; }
+@media (max-width: 400px) { .row2 { grid-template-columns: minmax(0,1fr); } }
+.switch { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--text-primary); }
+.switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.switch span.track { width: 40px; height: 22px; border-radius: 100px; background: var(--border); position: relative; flex: none; transition: background .2s; }
+.switch span.track::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: var(--shadow-sm); transition: transform .2s; }
+.switch input:checked + span.track { background: var(--accent); }
+.switch input:checked + span.track::after { transform: translateX(18px); }
+
+/* RESULTS */
+.results { display: grid; gap: 20px; }
+.rates { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+@media (max-width: 560px) { .rates { grid-template-columns: minmax(0,1fr); } }
+.rate { background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; display: grid; gap: 2px; align-content: start; }
+.rate.is-input { background: var(--bg-tertiary); }
+.rate .k { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); font-weight: 700; display: flex; justify-content: space-between; gap: 6px; }
+.rate .k em { font-style: normal; color: var(--accent); letter-spacing: 0.5px; }
+.rate .v { font-family: var(--font-mono); font-size: clamp(24px, 3.4vw, 30px); font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.25; }
+.rate .d { font-size: 12px; color: var(--text-secondary); }
+.extra { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 13px; color: var(--text-secondary); }
+.extra b { font-family: var(--font-mono); color: var(--text-primary); font-weight: 700; font-variant-numeric: tabular-nums; }
+
+.verdict { border-radius: var(--radius-lg); padding: 18px; display: grid; gap: 14px; border: 1px solid var(--border); }
+.verdict.win { background: var(--success-light); border-color: color-mix(in srgb, var(--success) 35%, transparent); }
+.verdict.lose { background: var(--accent-light); border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
+.verdict.tie { background: var(--warning-light); border-color: color-mix(in srgb, var(--warning) 35%, transparent); }
+.vhead { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.pill { font-family: var(--font-mono); font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; color: #fff; }
+.win .pill { background: var(--success); color: var(--bg-secondary); }
+.lose .pill { background: var(--accent); color: #fff; }
+.tie .pill { background: var(--warning); color: var(--bg-secondary); }
+.vtitle { font-size: 16px; font-weight: 700; text-wrap: balance; }
+.real { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+@media (max-width: 420px) { .real { grid-template-columns: minmax(0,1fr); } }
+.real div { display: grid; gap: 0; }
+.real .k { font-size: 12px; color: var(--text-secondary); font-weight: 600; }
+.real .v { font-family: var(--font-mono); font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.win .real .v { color: var(--success); } .lose .real .v { color: var(--accent); } .tie .real .v { color: var(--warning); }
+
+/* bars */
+.bars { display: grid; gap: 10px; }
+.bar { display: grid; grid-template-columns: 112px minmax(0,1fr) 64px; align-items: center; gap: 10px; font-size: 13px; }
+.bar .lbl { color: var(--text-secondary); font-weight: 600; }
+.bar .track { height: 12px; background: color-mix(in srgb, var(--text-muted) 15%, transparent); border-radius: 100px; overflow: hidden; }
+.bar .fill { height: 100%; border-radius: 100px; transition: width .35s ease; }
+.bar .num { font-family: var(--font-mono); font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+.fill.rate-f { background: var(--text-primary); }
+.fill.inf-f { background: var(--accent); }
+@media (prefers-reduced-motion: reduce) { .bar .fill, .switch span.track, .switch span.track::after { transition: none; } }
+
+.money { border-top: 1px dashed var(--border); padding-top: 18px; display: grid; gap: 12px; }
+.money-rows { display: grid; gap: 6px; font-size: 14px; }
+.money-rows div { display: flex; justify-content: space-between; gap: 12px; }
+.money-rows span:last-child { font-family: var(--font-mono); font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
+.money-rows .tot { border-top: 1px solid var(--border-light); padding-top: 6px; font-weight: 700; }
+.breakeven { font-size: 14px; color: var(--text-secondary); background: var(--bg-tertiary); border-radius: var(--radius-md); padding: 12px 14px; }
+.breakeven b { font-family: var(--font-mono); color: var(--text-primary); }
+.noinf { font-size: 14px; color: var(--text-secondary); background: var(--bg-tertiary); border-radius: var(--radius-md); padding: 14px; }
+
+/* TABLE */
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius-lg); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 460px; }
+th, td { padding: 10px 14px; text-align: right; font-variant-numeric: tabular-nums; }
+th:first-child, td:first-child { text-align: left; }
+thead th { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); background: var(--bg-tertiary); font-weight: 700; }
+tbody td { border-top: 1px solid var(--border-light); font-family: var(--font-mono); }
+tbody td:first-child { font-family: var(--font-body); font-weight: 600; }
+tbody tr.sel { background: var(--accent-light); }
+.chip { font-family: var(--font-mono); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 100px; }
+.chip.g { color: var(--success); background: var(--success-light); }
+.chip.r { color: var(--accent); background: var(--accent-light); }
+.chip.y { color: var(--warning); background: var(--warning-light); }
+
+.howto { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+@media (max-width: 760px) { .howto { grid-template-columns: minmax(0,1fr); } }
+.howto > div { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px; display: grid; gap: 6px; align-content: start; }
+.howto h3 { font-size: 15px; }
+.howto p { font-size: 14px; color: var(--text-secondary); }
+.howto code { font-family: var(--font-mono); font-size: 12.5px; background: var(--bg-tertiary); padding: 2px 6px; border-radius: 6px; color: var(--text-primary); }
+
+.disclaimer { background: var(--bg-tertiary); border-radius: var(--radius-lg); padding: 18px 20px; }
+.disclaimer h4 { font-size: 14px; margin-bottom: 4px; }
+.disclaimer p { font-size: 13px; color: var(--text-secondary); }
+
+/* CTA blocks */
+.ctas { display: grid; gap: 24px; padding-block: 0 40px; }
+.cta-curso { background: linear-gradient(135deg, var(--hero-a) 0%, var(--hero-b) 100%); border-radius: 20px; padding: 38px 32px; color: #fff; position: relative; overflow: hidden; }
+.cta-curso::before { content: ''; position: absolute; top: -30%; right: -10%; width: 350px; height: 350px; background: radial-gradient(circle, rgba(230,59,46,0.14) 0%, transparent 70%); pointer-events: none; }
+.cta-curso > * { position: relative; }
+.badge { display: inline-block; background: #E63B2E; padding: 8px 18px; border-radius: 100px; font-size: 16px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 14px; }
+.cta-curso h2 { font-size: clamp(22px, 4vw, 30px); line-height: 1.3; margin-bottom: 10px; }
+.cta-curso p { opacity: 0.78; max-width: 600px; }
+.feats { display: flex; flex-wrap: wrap; gap: 10px 18px; margin: 20px 0 24px; font-size: 14px; opacity: 0.85; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 100px; text-decoration: none; font-weight: 700; font-size: 15px; }
+.btn-red { background: #E63B2E; color: #fff; box-shadow: 0 4px 16px rgba(230,59,46,0.35); }
+.cta-ase { background: linear-gradient(135deg, #E63B2E 0%, #C4291E 100%); border-radius: 20px; padding: 34px 28px; color: #fff; text-align: center; }
+.cta-ase h2 { font-size: 24px; margin-bottom: 10px; }
+.cta-ase p { opacity: 0.92; max-width: 540px; margin: 0 auto 22px; }
+.cta-ase .btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.btn-white { background: #fff; color: #E63B2E; }
+.btn-ghost { background: rgba(255,255,255,0.15); color: #fff; border: 2px solid rgba(255,255,255,0.4); }
+.cta-ase .feats { justify-content: center; margin: 18px 0 0; }
+.cta-yt { background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 16px; padding: 30px 24px; text-align: center; display: grid; gap: 4px; justify-items: center; }
+.cta-yt img { width: 48px; height: 48px; border-radius: 10px; margin-bottom: 8px; }
+.cta-yt .t { font-weight: 600; }
+.cta-yt .s { font-size: 14px; color: var(--text-muted); margin-bottom: 14px; }
+.cta-yt .btns { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.btn-yt { background: #FF0000; color: #fff; }
+.btn-ig { background: linear-gradient(135deg,#833AB4,#FD1D1D,#F77737); color: #fff; }
+.footer { text-align: center; padding-block: 24px 32px; font-size: 13px; color: var(--text-muted); border-top: 1px solid var(--border); }
+.footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="simnav"><a href="https://rfinanciera.github.io/Simuladores/">🧰 Ver todos los simuladores →</a></div>
+
+<header class="header">
+  <div class="wrap header-inner">
+    <a class="brand" href="https://www.youtube.com/@Revolucion.Financiera">
+      <img src="revfin_logo.png" alt="Revolución Financiera" onerror="this.hidden=true">
+      <div class="brand-text">
+        <span class="brand-name">Revolución Financiera</span>
+        <span class="brand-sub">Finanzas Personales · Inversiones · Economía</span>
+      </div>
+    </a>
+    <span class="header-title">Conversor de Tasas</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>¿Tu tasa le gana a la <span>inflación</span>?</h1>
+    <p>Poné la TNA de tu billetera o plazo fijo y mirá cuánto rinde de verdad por mes, por año y después de la inflación.</p>
+    <div class="formula-strip"><span>TNA → TEM</span><span>TNA → TEA</span><span>Tasa real</span></div>
+  </div>
+</section>
+
+<main class="wrap main">
+  <div class="grid">
+    <!-- INPUT -->
+    <section class="card" aria-labelledby="inTitle">
+      <h2 id="inTitle">Tus datos</h2>
+      <p class="lead">Cargá la tasa como te la muestra la app o el banco.</p>
+
+      <div class="field">
+        <span class="flabel" id="tipoLbl">¿Qué tasa tenés?</span>
+        <div class="seg" role="group" aria-labelledby="tipoLbl" id="tipoSeg">
+          <button type="button" data-tipo="tna" aria-pressed="true">TNA</button>
+          <button type="button" data-tipo="tem" aria-pressed="false">TEM</button>
+          <button type="button" data-tipo="tea" aria-pressed="false">TEA</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="tasaInput" id="tasaLbl">Tasa nominal anual (TNA)</label>
+        <div class="inp"><input id="tasaInput" type="text" inputmode="decimal" value="20" autocomplete="off"><span class="unit">%</span></div>
+      </div>
+
+      <div class="field" id="capField">
+        <label for="capSel">¿Cada cuánto se acreditan los intereses?</label>
+        <select id="capSel">
+          <option value="1">Todos los días (billeteras, cuentas remuneradas)</option>
+          <option value="30">Cada 30 días, renovando (plazo fijo)</option>
+          <option value="90">Cada 90 días</option>
+          <option value="365">Una vez al año</option>
+        </select>
+        <span class="hint">Cuanto más seguido se acreditan, más interés sobre interés.</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="field">
+        <label class="switch" for="infOn"><input type="checkbox" id="infOn" checked><span class="track" aria-hidden="true"></span>Comparar con la inflación</label>
+      </div>
+
+      <div id="infFields">
+        <div class="field">
+          <span class="flabel" id="infTipoLbl">La inflación que cargo es…</span>
+          <div class="seg" role="group" aria-labelledby="infTipoLbl" id="infSeg">
+            <button type="button" data-inf="m" aria-pressed="true">Mensual</button>
+            <button type="button" data-inf="a" aria-pressed="false">Anual</button>
+          </div>
+        </div>
+        <div class="field">
+          <label for="infInput" id="infLbl">Inflación mensual</label>
+          <div class="inp"><input id="infInput" type="text" inputmode="decimal" value="1,9" autocomplete="off"><span class="unit">%</span></div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="capInput">Monto</label>
+            <div class="inp small"><span class="unit" style="padding:0 0 0 12px">$</span><input id="capInput" type="text" inputmode="numeric" value="1.000.000" autocomplete="off"></div>
+          </div>
+          <div class="field">
+            <label for="diasInput">Plazo</label>
+            <div class="inp small"><input id="diasInput" type="text" inputmode="numeric" value="30" autocomplete="off"><span class="unit">días</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="card results" aria-live="polite" aria-labelledby="outTitle">
+      <div>
+        <h2 id="outTitle">Tu tasa, en todos los idiomas</h2>
+        <p class="lead" style="margin-bottom:0" id="outLead"></p>
+      </div>
+
+      <div class="rates">
+        <div class="rate" id="rTNA"><div class="k">TNA <em></em></div><div class="v">–</div><div class="d">Nominal anual. Sirve para comparar ofertas.</div></div>
+        <div class="rate" id="rTEM"><div class="k">TEM <em></em></div><div class="v">–</div><div class="d">Lo que ganás en 30 días.</div></div>
+        <div class="rate" id="rTEA"><div class="k">TEA <em></em></div><div class="v">–</div><div class="d">Lo que ganás en un año reinvirtiendo todo.</div></div>
+      </div>
+      <div class="extra" id="extra"></div>
+
+      <div id="infOut"></div>
+    </section>
+  </div>
+
+  <!-- REFERENCE TABLE -->
+  <section class="card" aria-labelledby="refTitle">
+    <h2 id="refTitle">Tabla rápida: de TNA a tasa real</h2>
+    <p class="lead" id="refLead"></p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>TNA</th><th>TEM</th><th>TEA</th><th id="thReal">Real mensual</th><th id="thRealA">Real anual</th></tr></thead>
+        <tbody id="refBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- HOW -->
+  <div class="section-label">Cómo se calcula</div>
+  <div class="howto">
+    <div>
+      <h3>De TNA a TEM y TEA</h3>
+      <p>La TNA se divide por los períodos del año y se capitaliza. Con acreditación diaria: <code>TEM = (1 + TNA/365)^30 − 1</code> y <code>TEA = (1 + TNA/365)^365 − 1</code>.</p>
+    </div>
+    <div>
+      <h3>Tasa real</h3>
+      <p>Lo que ganás después de la inflación. Se divide, no se resta: <code>real = (1 + tasa) / (1 + inflación) − 1</code>. Siempre en el mismo plazo: mensual con mensual, anual con anual.</p>
+    </div>
+    <div>
+      <h3>Qué comparar con qué</h3>
+      <p>Billetera contra billetera: TNA. Contra la inflación del mes: TEM. Contra la inflación del año: TEA. Mezclarlas es el error más común.</p>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    <h4>⚠️ Aviso</h4>
+    <p>El TEM se calcula sobre 30 días y el TEA sobre 365. La inflación anual se obtiene capitalizando la mensual 12 veces. Los resultados suponen que la tasa y la inflación se mantienen constantes durante todo el plazo, lo que en la práctica no ocurre. Las billeteras suelen remunerar solo hasta un tope de saldo. Herramienta informativa: no constituye asesoramiento financiero. Creada por Revolución Financiera.</p>
+  </div>
+</main>
+
+<div class="wrap ctas">
+  <div class="cta-curso">
+    <span class="badge">🎓 CURSO</span>
+    <h2>Finanzas Personales e Inversiones</h2>
+    <p>El curso completo para organizarte económicamente e invertir desde Argentina, aunque nunca hayas invertido un peso.</p>
+    <div class="feats"><span>📋 4 módulos completos</span><span>🎬 +30 clases en video</span><span>📊 Archivos descargables</span><span>🔒 Acceso de por vida</span></div>
+    <div style="text-align:center"><a class="btn btn-red" href="https://revolucion-financiera.tiendup.com/curso/finanzas-personales-e-inversiones?view_page=sale" target="_blank" rel="noopener" data-ev="click_curso">🚀 Ver curso completo →</a></div>
+  </div>
+
+  <div class="cta-ase">
+    <h2>💬 Asesoría financiera personalizada</h2>
+    <p>¿No sabés dónde poner tus pesos para que no pierdan contra la inflación? En una asesoría 1 a 1 analizamos tu situación y armamos una estrategia a tu medida.</p>
+    <div class="btns">
+      <a class="btn btn-white" href="https://www.instagram.com/revolucionfinancieraok/" target="_blank" rel="noopener" data-ev="click_asesoria" data-metodo="instagram">📩 Escribime por Instagram</a>
+      <a class="btn btn-ghost" href="mailto:matiasduva.rf@gmail.com" data-ev="click_asesoria" data-metodo="email">✉️ matiasduva.rf@gmail.com</a>
+    </div>
+    <div class="feats"><span>✅ Análisis de cartera</span><span>✅ Estrategia personalizada</span><span>✅ Videollamada 1 a 1</span></div>
+  </div>
+
+  <div class="cta-yt">
+    <img src="revfin_logo.png" alt="Revolución Financiera" onerror="this.hidden=true">
+    <p class="t">¿Querés más videos sobre inversiones y finanzas personales? 👇</p>
+    <p class="s">www.youtube.com/@Revolucion.Financiera</p>
+    <div class="btns">
+      <a class="btn btn-yt" href="https://www.youtube.com/@Revolucion.Financiera" target="_blank" rel="noopener">▶ Suscribite a Revolución Financiera</a>
+      <a class="btn btn-ig" href="https://www.instagram.com/revolucionfinancieraok/" target="_blank" rel="noopener">📷 Seguinos en Instagram</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer"><div class="wrap">Hecho con ❤️ por <a href="https://youtube.com/@Revolucion.Financiera" target="_blank" rel="noopener">Revolución Financiera</a></div></footer>
+
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const state = { tipo: 'tna', inf: 'm' };
+
+  const DEFAULTS = { tna: '20', tem: '1,5', tea: '22' };
+  const LABELS = { tna: 'Tasa nominal anual (TNA)', tem: 'Tasa efectiva mensual (TEM)', tea: 'Tasa efectiva anual (TEA)' };
+
+  const parseNum = (s) => {
+    s = String(s).trim().replace(/\s|%|\$/g, '');
+    if (!s) return NaN;
+    if (s.includes(',')) s = s.replace(/\./g, '').replace(',', '.');
+    else if (/^\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, '');
+    return parseFloat(s);
+  };
+  const pct = (x, d = 2) => isFinite(x) ? (x * 100).toLocaleString('es-AR', { minimumFractionDigits: d, maximumFractionDigits: d }) + '%' : '–';
+  const sPct = (x, d = 2) => (x > 0 ? '+' : '') + pct(x, d);
+  const ars = (x) => isFinite(x) ? '$' + Math.round(x).toLocaleString('es-AR') : '–';
+  const sArs = (x) => (x >= 0 ? '+' : '−') + '$' + Math.abs(Math.round(x)).toLocaleString('es-AR');
+
+  // Todo pasa por la tasa efectiva diaria equivalente (factor de crecimiento por día)
+  function toDailyFactor(tipo, r, cap) {
+    if (tipo === 'tna') return Math.pow(1 + r * cap / 365, 1 / cap);
+    if (tipo === 'tem') return Math.pow(1 + r, 1 / 30);
+    return Math.pow(1 + r, 1 / 365);
+  }
+
+  function setPressed(segId, attr, val) {
+    $(segId).querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset[attr] === val)));
+  }
+
+  function calc() {
+    const raw = parseNum($('tasaInput').value) / 100;
+    const cap = parseInt($('capSel').value, 10);
+    const capLabel = { 1: 'diaria', 7: 'semanal', 30: 'cada 30 días', 90: 'cada 90 días', 180: 'cada 180 días', 365: 'anual' }[cap];
+    $('capField').hidden = state.tipo !== 'tna';
+    ['rTNA','rTEM','rTEA'].forEach(id => { $(id).classList.remove('is-input'); $(id).querySelector('em').textContent = ''; });
+
+    if (!isFinite(raw) || raw <= -1) {
+      ['rTNA','rTEM','rTEA'].forEach(id => $(id).querySelector('.v').textContent = '–');
+      $('extra').innerHTML = ''; $('infOut').innerHTML = '<div class="noinf">Escribí una tasa válida, por ejemplo 20 o 19,5.</div>';
+      $('outLead').textContent = ''; $('refBody').innerHTML = ''; return;
+    }
+
+    const f = toDailyFactor(state.tipo, raw, cap);
+    const tem = Math.pow(f, 30) - 1;
+    const tea = Math.pow(f, 365) - 1;
+    const pCap = state.tipo === 'tna' ? cap : 30;
+    const tna = (Math.pow(f, pCap) - 1) * 365 / pCap;
+    const tnaDiaria = (f - 1) * 365;
+
+    $('rTNA').querySelector('.v').textContent = pct(tna);
+    $('rTEM').querySelector('.v').textContent = pct(tem);
+    $('rTEA').querySelector('.v').textContent = pct(tea);
+    const inId = { tna: 'rTNA', tem: 'rTEM', tea: 'rTEA' }[state.tipo];
+    $(inId).classList.add('is-input'); $(inId).querySelector('em').textContent = 'la tuya';
+
+    $('rTNA').querySelector('.d').textContent = state.tipo === 'tna'
+      ? 'Nominal anual. Sirve para comparar ofertas.'
+      : 'Equivalente con acreditación cada 30 días.';
+
+    $('outLead').textContent = state.tipo === 'tna'
+      ? `Con ${pct(raw)} de TNA y acreditación ${capLabel}.`
+      : `Partiendo de ${pct(raw)} de ${state.tipo.toUpperCase()}.`;
+
+    $('extra').innerHTML = `<span>Por día: <b>${pct(f - 1, 4)}</b></span><span>Semestral: <b>${pct(Math.pow(f, 182.5) - 1)}</b></span>` +
+      (state.tipo !== 'tna' ? `<span>TNA con acreditación diaria: <b>${pct(tnaDiaria)}</b></span>` : '');
+
+    // INFLACIÓN
+    const on = $('infOn').checked;
+    $('infFields').hidden = !on;
+    let infM = NaN, infA = NaN;
+    if (on) {
+      const i = parseNum($('infInput').value) / 100;
+      if (isFinite(i) && i > -1) {
+        if (state.inf === 'm') { infM = i; infA = Math.pow(1 + i, 12) - 1; }
+        else { infA = i; infM = Math.pow(1 + i, 1 / 12) - 1; }
+      }
+    }
+
+    if (!on) {
+      $('infOut').innerHTML = '<div class="noinf">Activá “Comparar con la inflación” para ver tu tasa real y cuánto poder de compra ganás o perdés.</div>';
+    } else if (!isFinite(infM)) {
+      $('infOut').innerHTML = '<div class="noinf">Escribí la inflación, por ejemplo 1,9.</div>';
+    } else {
+      const realM = (1 + tem) / (1 + infM) - 1;
+      const realA = (1 + tea) / (1 + infA) - 1;
+      const eps = 0.0005; // ±0,05 pp mensual = empate
+      const cls = realM > eps ? 'win' : realM < -eps ? 'lose' : 'tie';
+      const pill = { win: 'Le ganás', lose: 'Perdés', tie: 'Empate' }[cls];
+      const title = {
+        win: 'Tu plata crece más rápido que los precios.',
+        lose: 'Tus pesos suben, pero compran menos que antes.',
+        tie: 'Mantenés el poder de compra, sin ganar ni perder.'
+      }[cls];
+
+      const max = Math.max(tem, infM, 0.0001) * 1.15;
+      const w = (x) => Math.max(0, Math.min(100, x / max * 100)).toFixed(1) + '%';
+
+      const capital = parseNum($('capInput').value);
+      let dias = parseNum($('diasInput').value);
+      dias = isFinite(dias) && dias > 0 ? Math.min(Math.round(dias), 3650) : 30;
+      let money = '';
+      if (isFinite(capital) && capital > 0) {
+        const fin = capital * Math.pow(f, dias);
+        const need = capital * Math.pow(1 + infM, dias / 30);
+        money = `<div class="money">
+          <div class="vtitle" style="font-size:15px">Con ${ars(capital)} a ${dias} días</div>
+          <div class="money-rows">
+            <div><span>Tenés al final</span><span>${ars(fin)}</span></div>
+            <div><span>Necesitás para comprar lo mismo que hoy</span><span>${ars(need)}</span></div>
+            <div class="tot"><span>${fin >= need ? 'Ganás en poder de compra' : 'Perdés en poder de compra'}</span><span>${sArs(fin - need)}</span></div>
+          </div>
+        </div>`;
+      }
+
+      // TNA de equilibrio con la misma capitalización (o diaria si no se cargó TNA)
+      const pBE = state.tipo === 'tna' ? cap : 1;
+      const tnaBE = (Math.pow(1 + infM, pBE / 30) - 1) * 365 / pBE;
+      const beTxt = pBE === 1 ? 'con acreditación diaria' : 'con acreditación ' + ({7:'semanal',30:'cada 30 días',90:'cada 90 días',180:'cada 180 días',365:'anual'}[pBE]);
+
+      $('infOut').innerHTML = `<div class="verdict ${cls}">
+        <div class="vhead"><span class="pill">${pill}</span><span class="vtitle">${title}</span></div>
+        <div class="real">
+          <div><span class="k">Tasa real mensual</span><span class="v">${sPct(realM)}</span></div>
+          <div><span class="k">Tasa real anual</span><span class="v">${sPct(realA)}</span></div>
+        </div>
+        <div class="bars" role="img" aria-label="TEM ${pct(tem)} contra inflación mensual ${pct(infM)}">
+          <div class="bar"><span class="lbl">Tu TEM</span><span class="track"><span class="fill rate-f" style="width:${w(tem)};display:block"></span></span><span class="num">${pct(tem)}</span></div>
+          <div class="bar"><span class="lbl">Inflación mes</span><span class="track"><span class="fill inf-f" style="width:${w(infM)};display:block"></span></span><span class="num">${pct(infM)}</span></div>
+        </div>
+        <div class="breakeven">Para empatar ${pct(infM)} mensual (${pct(infA, 1)} anual) necesitás una TNA de al menos <b>${pct(tnaBE)}</b> ${beTxt}.</div>
+        ${money}
+      </div>`;
+    }
+
+    renderTable(cap, infM, infA, tna);
+  }
+
+  function renderTable(cap, infM, infA, tnaNow) {
+    const p = state.tipo === 'tna' ? cap : 30;
+    const pLabel = { 1: 'diaria', 7: 'semanal', 30: 'cada 30 días', 90: 'cada 90 días', 180: 'cada 180 días', 365: 'anual' }[p];
+    const hasInf = isFinite(infM);
+    $('refLead').textContent = 'Acreditación ' + pLabel + (hasInf ? `, contra ${pct(infM)} de inflación mensual.` : '.') + ' La fila marcada es la más cercana a tu tasa.';
+    $('thReal').hidden = !hasInf; $('thRealA').hidden = !hasInf;
+    const rows = [];
+    let closest = 0, best = Infinity;
+    const list = [];
+    for (let t = 14; t <= 36; t += 2) list.push(t / 100);
+    list.forEach((t, i) => { const dd = Math.abs(t - tnaNow); if (dd < best) { best = dd; closest = i; } });
+    list.forEach((t, i) => {
+      const f = Math.pow(1 + t * p / 365, 1 / p);
+      const tem = Math.pow(f, 30) - 1, tea = Math.pow(f, 365) - 1;
+      let realCells = '';
+      if (hasInf) {
+        const rm = (1 + tem) / (1 + infM) - 1, ra = (1 + tea) / (1 + infA) - 1;
+        const c = rm > 0.0005 ? 'g' : rm < -0.0005 ? 'r' : 'y';
+        realCells = `<td><span class="chip ${c}">${sPct(rm)}</span></td><td>${sPct(ra, 1)}</td>`;
+      }
+      rows.push(`<tr${i === closest ? ' class="sel"' : ''}><td>${pct(t, 0)}</td><td>${pct(tem)}</td><td>${pct(tea, 1)}</td>${realCells}</tr>`);
+    });
+    $('refBody').innerHTML = rows.join('');
+  }
+
+  $('tipoSeg').addEventListener('click', (e) => {
+    const b = e.target.closest('button'); if (!b) return;
+    state.tipo = b.dataset.tipo; setPressed('tipoSeg', 'tipo', state.tipo);
+    $('tasaLbl').textContent = LABELS[state.tipo];
+    $('tasaInput').value = DEFAULTS[state.tipo];
+    calc();
+  });
+  $('infSeg').addEventListener('click', (e) => {
+    const b = e.target.closest('button'); if (!b) return;
+    const prev = state.inf; state.inf = b.dataset.inf; setPressed('infSeg', 'inf', state.inf);
+    $('infLbl').textContent = state.inf === 'm' ? 'Inflación mensual' : 'Inflación anual';
+    const v = parseNum($('infInput').value) / 100;
+    if (prev !== state.inf && isFinite(v)) {
+      const nv = state.inf === 'a' ? Math.pow(1 + v, 12) - 1 : Math.pow(1 + v, 1 / 12) - 1;
+      $('infInput').value = (nv * 100).toLocaleString('es-AR', { maximumFractionDigits: 2 });
+    }
+    calc();
+  });
+  ['tasaInput', 'infInput', 'diasInput'].forEach(id => $(id).addEventListener('input', calc));
+  $('capInput').addEventListener('input', (e) => {
+    const n = parseNum(e.target.value.replace(/\./g, ''));
+    if (isFinite(n)) e.target.value = Math.round(n).toLocaleString('es-AR');
+    calc();
+  });
+  $('capSel').addEventListener('change', calc);
+  $('infOn').addEventListener('change', calc);
+
+  document.querySelectorAll('[data-ev]').forEach(a => a.addEventListener('click', () => {
+    try { if (typeof gtag === 'function') gtag('event', a.dataset.ev, { metodo: a.dataset.metodo || 'link', origen: 'conversor_tasas' }); } catch (e) {}
+  }));
+
+  calc();
+})();
+</script>
+</body>
+</html>
